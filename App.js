@@ -4,54 +4,19 @@
  * @flow
  */
 
-import React, { Component } from 'react'
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native'
+import React from 'react'
+import { Router, Stack } from 'react-native-router-flux'
 
-import { colors } from './styles/colors'
+import SceneStack from './src/scenes/SceneStack'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-})
-
-type Props = {}
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Time-Tracker
-        </Text>
-        <Button color={colors.primary} title='Button' />
-      </View>
-    )
-  }
+const App = () => {
+  return (
+    <Router>
+      <Stack key="root">
+        {SceneStack.map(scene => scene)}
+      </Stack>
+    </Router>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 50,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-})
+export default App
